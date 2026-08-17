@@ -1,5 +1,9 @@
 # HostSync
 
+[![CI](https://github.com/IgorBazaga/hostsync/actions/workflows/ci.yml/badge.svg)](https://github.com/IgorBazaga/hostsync/actions/workflows/ci.yml)
+![PHP](https://img.shields.io/badge/PHP-%3E%3D8.2-777BB4?logo=php&logoColor=white)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 **Realtime synchronization for ordinary PHP hosting.**
 
 HostSync is a small open-source PHP + JavaScript toolkit for applications that need to push state changes between browsers but cannot rely on a dedicated WebSocket server, Redis, Node.js, or a long-running daemon.
@@ -292,6 +296,10 @@ Potential future work:
 - Signed webhook/event bridge.
 
 The core will remain usable without those optional integrations.
+
+## Release
+
+Current release: **v0.1.0**. See [`CHANGELOG.md`](CHANGELOG.md) and the [v0.1.0 release notes](docs/RELEASE_NOTES_0.1.0.md).
 
 ## Contributing
 
