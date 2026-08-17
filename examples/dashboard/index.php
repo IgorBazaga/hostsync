@@ -1,0 +1,9 @@
+<?php
+$app = require dirname(__DIR__, 2) . '/bootstrap.php';
+$token = $app['tokens']->issue('dashboard-demo', ['demo.dashboard'], ['read', 'write'], 3600);
+?>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>HostSync Dashboard</title><link rel="stylesheet" href="../demo.css"></head>
+<body><main class="shell"><div class="brand">HostSync / Dashboard</div><h1>Push metrics only when they change.</h1><div class="grid"><div class="card"><div class="kicker">Active sessions</div><div id="sessions" class="metric">128</div></div><div class="card"><div class="kicker">Queue</div><div id="queue" class="metric">6</div></div><div class="card"><div class="kicker">Availability</div><div id="availability" class="metric">99.95%</div></div></div><div class="controls" style="margin-top:16px"><button class="primary" id="update">Simulate metric update</button><span id="transport" class="small">connecting…</span></div><div class="nav"><a href="../index.php">← Examples</a></div></main>
+<script type="module">
+import {HostSync} from '../../client/hostsync.js';const sync=new HostSync({baseUrl:'../../public',channel:'demo.dashboard',token:<?=json_encode($token)?>});let state={sessions:128,queue:6,availability:'99.95%'};const transportEl=document.querySelector('#transport');const updateBtn=document.querySelector('#update');const render=()=>Object.entries(state).forEach(([k,v])=>document.querySelector(`#${k}`).textContent=v);sync.on('metrics.update',e=>{state=e.payload;render()});sync.on('connection',e=>transportEl.textContent=`Transport: ${e.transport}`);await sync.start();updateBtn.onclick=async()=>{state={sessions:80+Math.floor(Math.random()*120),queue:Math.floor(Math.random()*18),availability:(99.5+Math.random()*.49).toFixed(2)+'%'};render();await sync.publish('metrics.update',state,{idempotencyKey:crypto.randomUUID()})};render();
+</script></body></html>

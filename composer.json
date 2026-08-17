@@ -1,0 +1,40 @@
+{
+  "name": "igorbazaga/hostsync",
+  "description": "Realtime synchronization for PHP apps on shared hosting, with SSE and automatic long-polling fallback.",
+  "type": "library",
+  "license": "MIT",
+  "keywords": [
+    "php",
+    "realtime",
+    "sse",
+    "long-polling",
+    "shared-hosting",
+    "sync"
+  ],
+  "authors": [
+    {
+      "name": "Igor Bazaga"
+    }
+  ],
+  "require": {
+    "php": ">=8.2",
+    "ext-json": "*",
+    "ext-pdo": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "IgorBazaga\\HostSync\\": "src/"
+    }
+  },
+  "scripts": {
+    "test": "php tests/run.php",
+    "demo": "php -S 127.0.0.1:8080"
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true,
+  "homepage": "https://github.com/IgorBazaga/hostsync",
+  "support": {
+    "issues": "https://github.com/IgorBazaga/hostsync/issues",
+    "source": "https://github.com/IgorBazaga/hostsync"
+  }
+}
